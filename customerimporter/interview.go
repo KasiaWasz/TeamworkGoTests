@@ -28,7 +28,7 @@ func CountEmailDomains(filePath string) error {
 	domainCounts := make(map[string]int)
 
 	csvReader := csv.NewReader(file)
-	csvReader.FieldsPerRecord = -1 // Ustawienie na -1 ignoruje błędy związane z różną liczbą pól na rekord
+	csvReader.FieldsPerRecord = -1
 
 	for {
 
