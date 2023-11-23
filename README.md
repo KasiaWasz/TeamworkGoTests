@@ -12,5 +12,7 @@ In main.go line 11 (https://github.com/KasiaWasz/TeamworkGoTests/blob/510168ebe9
 
 ## Installation
 1.Clone this repository.
+
 2.Import this Go project.
+
 3.Use the CountEmailDomains function after setting the file path within your project.
