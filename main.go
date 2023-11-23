@@ -10,7 +10,7 @@ func main() {
 
 	filePath := "customers.csv"
 
-	file, err := customerimporter.OpenFile(filePath)
+	file, err := customerimporter.OpenCsvFile(filePath)
 
 	if err != nil {
 

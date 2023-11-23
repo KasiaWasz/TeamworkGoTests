@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-func OpenFile(filePath string) (*os.File, error) {
+func OpenCsvFile(filePath string) (*os.File, error) {
 
 	file, err := os.Open(filePath)
 	if err != nil {
