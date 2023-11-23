@@ -14,16 +14,17 @@ import (
 	"strings"
 )
 
-func CountEmailDomains(filePath string) error {
+func OpenFile(filePath string) (*os.File, error) {
 
 	file, err := os.Open(filePath)
-
 	if err != nil {
-
-		return err
+		return nil, err
 	}
 
-	defer file.Close()
+	return file, nil
+}
+
+func CountEmailDomains(file *os.File) (map[string]int, error) {
 
 	domainCounts := make(map[string]int)
 
@@ -54,7 +55,7 @@ func CountEmailDomains(filePath string) error {
 
 	if len(domainCounts) == 0 {
 
-		return errors.New("no email domains found")
+		return nil, errors.New("no email domains found")
 	}
 
 	var domains []string
@@ -70,5 +71,5 @@ func CountEmailDomains(filePath string) error {
 
 		fmt.Printf("%s: %d\n", domain, domainCounts[domain])
 	}
-	return nil
+	return domainCounts, nil
 }

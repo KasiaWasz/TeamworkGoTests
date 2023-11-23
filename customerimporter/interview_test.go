@@ -8,12 +8,6 @@ import (
 func TestCountEmailDomains(t *testing.T) {
 
 	testFilePath := "test_customers.csv"
-	defer func(name string) {
-		err := os.Remove(name)
-		if err != nil {
-
-		}
-	}(testFilePath)
 
 	csvData := `first_name,last_name,email,gender,ip_address
 	Anastazja,Kruk,a.kruk@gmail.com,Female,38.194.51.128 
@@ -27,7 +21,30 @@ func TestCountEmailDomains(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err := CountEmailDomains(testFilePath); err != nil {
+	defer func(name string) {
+
+		err := os.Remove(name)
+
+		if err != nil {
+		}
+	}(testFilePath)
+
+	file, err := os.Open(testFilePath)
+
+	if err != nil {
+
+		t.Fatal(err)
+	}
+	defer func(file *os.File) {
+
+		err := file.Close()
+
+		if err != nil {
+
+		}
+	}(file)
+
+	if _, err := CountEmailDomains(file); err != nil {
 
 		t.Errorf("Expected nil error, got: %v", err)
 	}
