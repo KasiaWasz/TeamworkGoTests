@@ -24,7 +24,7 @@ func OpenCsvFile(filePath string) (*os.File, error) {
 	return file, nil
 }
 
-func CountEmailDomains(file *os.File) (map[string]int, error) {
+func CountEmailDomains(file *os.File) error {
 
 	domainCounts := make(map[string]int)
 
@@ -55,7 +55,7 @@ func CountEmailDomains(file *os.File) (map[string]int, error) {
 
 	if len(domainCounts) == 0 {
 
-		return nil, errors.New("no email domains found")
+		return errors.New("no email domains found")
 	}
 
 	var domains []string
@@ -71,5 +71,6 @@ func CountEmailDomains(file *os.File) (map[string]int, error) {
 
 		fmt.Printf("%s: %d\n", domain, domainCounts[domain])
 	}
-	return domainCounts, nil
+
+	return nil
 }

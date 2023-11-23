@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	filePath := "customers.csv"
+	filePath := "data/customers.csv"
 
 	file, err := customerimporter.OpenCsvFile(filePath)
 
@@ -26,7 +26,7 @@ func main() {
 		}
 	}(file)
 
-	_, err = customerimporter.CountEmailDomains(file)
+	err = customerimporter.CountEmailDomains(file)
 
 	if err != nil {
 
